@@ -41,5 +41,40 @@ for line in today:
 #print(u_list[1])
 ul = len(u_list)
 num = ul - us 
-print("number of URLH which are overlapping is = " ,num)
+print("number of URLH which are repeating inside today.json itself = " ,num)
 
+yesterday=[]
+
+for line in open('yesterday.json.gz_out','r'):
+    yesterday.append(json.loads(line))
+
+y_set = set()
+for line in yesterday:
+    y_set.add(line['urlh'])
+#print(len(y_set))
+
+over = 0
+for i in u_set:
+    if i in y_set :
+        over+=1
+
+#print(over)
+print("number of URLH which are overlapping between today.json and yesterday.json = " ,over)
+
+'''
+y_list = list()
+for line in yesterday:
+    y_list.append(line['urlh'])
+#print(len(y_set))
+
+
+
+
+over = 0
+for i in u_list:
+    if i in y_list :
+        over+=1
+
+#print(over)
+print("number of URLH which are overlapping between today.json and yesterday.json when repetation is allowed = " ,over)
+'''
