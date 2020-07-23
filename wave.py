@@ -53,14 +53,32 @@ for line in yesterday:
     y_set.add(line['urlh'])
 #print(len(y_set))
 
-over = 0
+overlapping= []
+#over = 0
+diff =0
 for i in u_set:
     if i in y_set :
-        over+=1
+        #over+=1
+        overlapping.append(i)
+        '''
+        for j in today:
+            try :
+                if i in j['available_price']:
+                     temp= float(j['available_price'])
+                     diff = diff - temp
+            except TypeError as t:
+                pass
+            
+        '''
+
+#print(len(overlapping))
 
 #print(over)
-print("number of URLH which are overlapping between today.json and yesterday.json = " ,over)
+#print("number of URLH which are overlapping between today.json and yesterday.json = " ,over)
+print("1) number of URLH which are overlapping between today.json and yesterday.json = " ,len(overlapping))
 
+over = u_set.intersection(y_set)
+print(len(over))
 '''
 y_list = list()
 for line in yesterday:
@@ -77,4 +95,20 @@ for i in u_list:
 
 #print(over)
 print("number of URLH which are overlapping between today.json and yesterday.json when repetation is allowed = " ,over)
+
 '''
+
+'''
+diff=0.0
+for line in today:
+    for i in overlapping:
+        
+        if i in line['urlh']:
+            try:
+                temp= float(line['available_price'])
+                diff = diff - temp
+            except TypeError:
+                pass
+print(diff)
+'''          
+#some where 'available_price' is returning None type!
