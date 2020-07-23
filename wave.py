@@ -47,6 +47,7 @@ for line in yesterday:
     y_set.add(line['urlh'])
 #print(len(y_set))
 
+#1. No of URLH which are overlapping.
 overlapping= []
 #over = 0
 diff =0
@@ -72,7 +73,28 @@ print("1) number of URLH which are overlapping between today.json and yesterday.
 
 print(":) __________________________________ :)")
 print()
+
+#2 
+
 '''
+price=[]
+for item in overlapping:
+    for (i , j) in zip(today,yesterday):
+        if j["available_price"] == None and i["available_price"] == None:
+            pass
+        else:
+            x = i["available_price"]
+            print(x)
+            y=j["available_price"]
+            diff = float(x)-float(y)
+            price.append(diff)
+print(price)      
+'''
+'''     
+
+
+       
+
 diff=0.0
 for line in today:
     for i in overlapping:
@@ -85,7 +107,6 @@ for line in today:
                 pass
 print(diff)
 '''          
-#some where 'available_price' is returning None type!
 
 #3 No of Unique categories in both files.
 
@@ -165,6 +186,17 @@ for line in tommorow:
     
 print("   :) __________________________________ :)")
 print()
-    
+
+#6. Generate a new file where mrp is normalized.
+
+
+for line in today:
+    if line['mrp'] == '0' or line['mrp'] == None:
+        line['mrp'] = "NA"
+
+with open('data.json', 'w') as outfile:
+    json.dump(today, outfile)
+
+
 
         
